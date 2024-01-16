@@ -9,6 +9,6 @@ mod.MOD_NAME = MOD_NAME;
 mod.MOD_NAME_SHORT = MOD_NAME_SHORT;
 mod.MOD_VERSION = MOD_VERSION;
 
-mod.DEBUG = "yes";
+-- mod.DEBUG = "yes";
 
 return BetterCurseAPI;
