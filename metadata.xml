@@ -42,9 +42,9 @@ on_change_enabled is a function that takes 1 parameter, which is true if the cur
 default_enabled is either true or false, indicating whether the curse is enabled by default.
 on_weight_change is a function that takes 1 parameter, which is a number equal to the new weight value being set.
 default_weight is a number equal to the default weight value.
-text is an optional parameter to display text below a curse's name. I recommend something like "Added by 'MOD_NAME' (Version 1.0)".</description>
+text is an optional parameter to display text below a curse's name. I recommend something like &quot;Added by 'MOD_NAME' (Version 1.0)&quot;.</description>
     <version>1.1</version>
-    <visibility>Friends Only</visibility>
+    <visibility>Public</visibility>
     <tag id="Lua"/>
     <tag id="Floors"/>
     <tag id="Hazards"/>
