@@ -5,6 +5,8 @@
     <id>3138981694</id>
     <description>Requires [url=https://steamcommunity.com/sharedfiles/filedetails/?id=1978904635]MiniMAPI[/url]
 
+Found a bug? Want to contribute? [url=https://github.com/KittyMcTophat/better-curseapi]Check out Better CurseAPI's GitHub repository![/url]
+
 I was unsatisfied with CurseAPI, so I made my own better version.
 
 [h1]Here's a list of the improvements over CurseAPI[/h1]
@@ -40,12 +42,7 @@ on_change_enabled is a function that takes 1 parameter, which is true if the cur
 default_enabled is either true or false, indicating whether the curse is enabled by default.
 on_weight_change is a function that takes 1 parameter, which is a number equal to the new weight value being set.
 default_weight is a number equal to the default weight value.
-text is an optional parameter to display text below a curse's name. I recommend something like "Added by 'MOD_NAME' (Version 1.0)".
-
-[h1]Known Issues[/h1]
-- When starting a new run for the first time on a save, configuration data will not be loaded until after curse generation.
-|- This has been fixed in Repentogon, but will be either much harder or impossible to fix for non-Repentogon users.
-</description>
+text is an optional parameter to display text below a curse's name. I recommend something like "Added by 'MOD_NAME' (Version 1.0)".</description>
     <version>1.1</version>
     <visibility>Friends Only</visibility>
     <tag id="Lua"/>
