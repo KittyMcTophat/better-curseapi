@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+    <name>!!~ Better CurseAPI</name>
+    <directory>better curseapi</directory>
+    <id>3138981694</id>
+    <description>Requires [url=https://steamcommunity.com/sharedfiles/filedetails/?id=1978904635]MiniMAPI[/url]
+
+I was unsatisfied with CurseAPI, so I made my own better version.
+
+[h1]Here's a list of the improvements over CurseAPI[/h1]
+- Uses the stage seed instead of math.random
+- Compatible with MiniMAPI
+- Doesn't override the game's actual curse chance
+- Allows custom functions to determine if a curse is allowed to spawn on a given floor
+- Allows differently weighted curses
+- Allows generating multiple curses on a floor (That's off by default, don't worry)
+- Uses Game():GetLevel():CanStageHaveCurseOfLabyrinth() instead of trying to compute it manually
+- Puts itself at the top of the mod list so you don't have to add ~ before your mod name to get the right load order
+
+[h1]How to use Better CurseAPI[/h1]
+(If you need an example for any of these steps, download the [url=https://github.com/KittyMcTophat/bcapi-example-curse]Example Curse mod[/url] from GitHub and look at the code)
+1. Add your curse to content/curses.xml
+
+2. Call BetterCurseAPI:registerCurse(curse_name, curse_weight, is_allowed_function, curse_icon) and store the return value in a local variable. That's your curse id. You'll need it later.
+curse_name is the same name you used in curses.xml
+curse_weight is the relative chance for a curse to appear, it is either a number or a function that returns a number. If unsure, make this value 1.0
+is_allowed_function is either a boolean value, or a function that returns true if your curse is allowed on this floor and false if it isn't. If unsure, make it true.
+curse_icon is either nil, or a table in the order of { sprite, animation name, animation frame }. If nil, your curse will not have an icon (This is not recommended).
+
+3. Your curse is now registered. Use BetterCurseAPI:isCurseActive(curse_id) with the curse id from step 2 to check if your curse is currently active.
+
+4. (Technically optional, but recommended) Add your curse to the Better CurseAPI mod config menu page. Be sure to check if mod config menu is installed first. You are responsible for saving and loading the user configuration for any custom curses you add. Better CurseAPI will not store it for you.
+
+The easiest way is to use BetterCurseAPI:addCurseConfig(curse_id, paramsTable).
+curse_id is the curse id from step 2.
+
+paramsTable is a table with the following keys.
+enabled_current_setting is a function that returns true if the curse is currently enabled, and false if it is disabled.
+on_change_enabled is a function that takes 1 parameter, which is true if the curse is being enabled, and false if it is being disabled.
+default_enabled is either true or false, indicating whether the curse is enabled by default.
+on_weight_change is a function that takes 1 parameter, which is a number equal to the new weight value being set.
+default_weight is a number equal to the default weight value.
+text is an optional parameter to display text below a curse's name. I recommend something like "Added by 'MOD_NAME' (Version 1.0)".
+
+[h1]Known Issues[/h1]
+- When starting a new run for the first time on a save, configuration data will not be loaded until after curse generation.
+|- This has been fixed in Repentogon, but will be either much harder or impossible to fix for non-Repentogon users.
+</description>
+    <version>1.1</version>
+    <visibility>Friends Only</visibility>
+    <tag id="Lua"/>
+    <tag id="Floors"/>
+    <tag id="Hazards"/>
+    <tag id="Tweaks"/>
+</metadata>
