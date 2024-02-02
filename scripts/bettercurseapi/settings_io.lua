@@ -55,13 +55,18 @@ else
     -- As far as I'm aware, there isn't a non-repentogon way to fix this bug.
     local loadedSlot = -1;
 
-    mod:AddCallback(ModCallbacks.MC_POST_SAVESLOT_LOAD, function (saveslot, isslotselected, rawslot)
+    function mod:repentogonLoad(saveslot, isslotselected, rawslot)
+        if mod.DEBUG then print(mod.MOD_NAME_SHORT .. ": MC_POST_SAVESLOT_LOAD " .. tostring(saveslot) .. " " .. tostring(isslotselected) .. " " .. tostring(rawslot)) end;
+
         if not isslotselected then return end;
+        if rawslot == 0 then return end;
         if saveslot == loadedSlot then return end;
 
         loadedSlot = saveslot;
         loadSettings();
-    end);
+    end
+
+    mod:AddCallback(ModCallbacks.MC_POST_SAVESLOT_LOAD, mod.repentogonLoad);
 end
 
 function mod:saveSettings()
