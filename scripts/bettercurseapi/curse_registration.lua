@@ -1,21 +1,34 @@
 local mod = require("scripts.bettercurseapi");
 
--- MinimapAPI setup
-require("scripts.minimapapi.init");
-local MinimapAPI = require("scripts.minimapapi");
--- end MinimapAPI setup
-
--- Add the curse's icon using MiniMAPI
+-- Placeholder warning if neither curse icon method is present
 local function addCurseIcon(curse_id, curse_icon)
     if curse_icon == nil then return end;
 
-    MinimapAPI:AddMapFlag(
-        curse_id,
-        function() return mod:curseIsActive(curse_id) end,
-        curse_icon[1], -- Fuck you lua, arrays start at 0
-        curse_icon[2],
-        curse_icon[3]
-    )
+    warn("Neither MinimapAPI nor REPENTOGON are present, modded curse icons will not be rendered");
+end
+
+if MinimapAPI then
+    -- Add the curse's icon using MiniMAPI
+    addCurseIcon = function (curse_id, curse_icon)
+        if curse_icon == nil then return end;
+        
+        MinimapAPI:AddMapFlag(
+            curse_id,
+            function() return mod:curseIsActive(curse_id) end,
+            curse_icon[1], -- Fuck you lua, arrays start at 0
+            curse_icon[2],
+            curse_icon[3]
+        )
+    end
+elseif REPENTOGON then
+    -- Add the curse's icon using REPENTOGON
+    local repentogon_curse_icon_renderer = require("scripts.bettercurseapi.repentogon.curse_icon_renderer");
+
+    addCurseIcon = function (curse_id, curse_icon)
+        if curse_icon == nil then return end;
+
+        repentogon_curse_icon_renderer:addIcon(curse_id, curse_icon);
+    end
 end
 
 local function addCurseToTable(new_curse_id, new_curse_name, new_curse_weight, new_curse_is_allowed, new_curse_icon)
