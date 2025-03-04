@@ -1,6 +1,6 @@
 local MOD_NAME = "Better CurseAPI";
 local MOD_NAME_SHORT = "BCAPI";
-local MOD_VERSION = "1.2";
+local MOD_VERSION = "1.3";
 
 BetterCurseAPI = RegisterMod(MOD_NAME, 1);
 local mod = BetterCurseAPI;
